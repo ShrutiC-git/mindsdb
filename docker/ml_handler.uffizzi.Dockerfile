@@ -1,0 +1,20 @@
+# Dockerfile
+FROM python:3.7
+
+RUN apt-get update && apt-get upgrade -y
+RUN pip3 install --upgrade pip
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+
+WORKDIR /
+
+# Install our reqs
+COPY mindsdb/integrations/handlers_wrapper/common_requirements.txt /mindsdb/
+COPY mindsdb/integrations/handlers_wrapper/huggingface_requirements.txt /mindsdb/
+RUN pip3 install -r /mindsdb/common_requirements.txt
+RUN pip3 install -r /mindsdb/huggingface_requirements.txt
+
+
+ENV PORT 5001
+ENV HOST "localhost"
+ENV PYTHONPATH "/mindsdb"
+EXPOSE $PORT
