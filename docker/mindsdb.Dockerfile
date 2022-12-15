@@ -13,7 +13,8 @@ WORKDIR /
 COPY requirements.txt /requirements.txt
 RUN pip install -r requirements.txt --no-cache-dir
 RUN pip install git+https://github.com/mindsdb/lightwood.git@staging --upgrade --no-cache-dir
-COPY mindsdb .
+
+COPY . /mindsdb
 
 ENV PYTHONPATH "/mindsdb"
 ENV FLASK_DEBUG "1"
