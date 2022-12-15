@@ -25,12 +25,12 @@ services:
 
 
   mindsdb:
-    image: mindsdb/mindsdb:latest
+    image: "${MINDSDB_IMAGE}"
     container_name: mindsdb
-    volumes:
-        - type: bind
-          source: ../
-          target: /mindsdb
+    # volumes:
+    #     - type: bind
+    #       source: ../
+    #       target: /mindsdb
     restart: "always"
     ports:
       - "47334:47334"

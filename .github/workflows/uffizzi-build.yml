@@ -57,8 +57,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Render Compose File
         run: |
-          # MINDSDB_IMAGE=${{ needs.build-mindsdb.outputs.tags }}
-          # export MINDSDB_IMAGE
+          MINDSDB_IMAGE=${{ needs.build-mindsdb.outputs.tags }}
+          export MINDSDB_IMAGE
           export UFFIZZI_URL=\$UFFIZZI_URL
           # Render simple template from environment variables.
           envsubst < docker-compose.uffizzi.yml > docker-compose.rendered.yml
