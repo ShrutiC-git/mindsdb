@@ -25,9 +25,9 @@ services:
       - postgres_data:/var/lib/postgresql/data/
       - ./uffizzi-db-script/:/docker-entrypoint-initdb.d/
    deploy:
-            resources:
-              limits:
-                memory: 500M
+          resources:
+            limits:
+              memory: 500M
 
 
   mindsdb:
@@ -36,7 +36,7 @@ services:
     #  - ./mindsdb:/app/
     ports:
       - "47334:47334"
-      # - "47335:47335"
+      - "47335:47335"
     # command: bash -c "cd /mindsdb && python -m mindsdb"
     environment:
       MINDSDB_DOCKER_ENV: "True"
@@ -53,21 +53,6 @@ services:
             resources:
               limits:
                 memory: 4000M
-
-  # mindsdb:
-  #   image: mindsdb/mindsdb:latest
-  #   # volumes:
-  #   #   - minds_volume:/root
-  #   volumes:
-  #       - type: bind
-  #         source: ../
-  #         target: /mindsdb
-    # environment:
-    #     MINDSDB_STORAGE_DIR: "/mindsdb/var"
-    #     MINDSDB_DOCKER_ENV: "True"
-    #     FLASK_DEBUG: "1"
-    #     FLASK_ENV: "development"
-    #     FLASK_APP: "./mindsdb/__main__.py"
 
 
 volumes:
