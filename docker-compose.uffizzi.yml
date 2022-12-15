@@ -25,7 +25,7 @@ services:
 
 
   mindsdb:
-    image: "${MINDSDB_IMAGE}"
+    image: mindsdb/mindsdb
     # volumes:
     #  - ./mindsdb:/app/
     ports:
