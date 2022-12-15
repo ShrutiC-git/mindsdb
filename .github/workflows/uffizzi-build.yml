@@ -48,8 +48,8 @@ jobs:
     name: Render Docker Compose File
     # Pass output of this workflow to another triggered by `workflow_run` event.
     runs-on: ubuntu-latest
-    # needs:
-    #   - build-mindsdb
+    needs:
+      - build-mindsdb
     outputs:
       compose-file-cache-key: ${{ steps.hash.outputs.hash }}
     steps:
