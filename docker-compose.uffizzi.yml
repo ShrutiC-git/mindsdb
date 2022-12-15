@@ -33,7 +33,7 @@ services:
     image: "${MINDSDB_IMAGE}"
     volumes:
      - ./mindsdb/api:/app/api
-     - ./mindsdb/integrations:/app/integrations
+    #  - ./mindsdb/integrations:/app/integrations
      - ./mindsdb/interfaces:/app/interfaces
      - ./mindsdb/migrations:/app/migrations
      - ./mindsdb/utilities:/app/utilities
@@ -46,6 +46,7 @@ services:
      - /app/interfaces/__pycache__/
      - /app/migrations/__pycache__/
      - /app/utilities/__pycache__/
+     - /app/integrations
     ports:
       - "47334:47334"
       - "47335:47335"
