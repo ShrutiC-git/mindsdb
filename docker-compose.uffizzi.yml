@@ -3,10 +3,16 @@ version: "3.8"
 # uffizzi integration
 x-uffizzi:
   ingress:
-    service: mindsdb
-    port: 47334
+    service: nginx
+    port: 8081
 
 services:
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx-uffizzi:/etc/nginx
+
 
   postgres:
    image: postgres
@@ -35,8 +41,8 @@ services:
     environment:
       MINDSDB_DOCKER_ENV: "True"
       MINDSDB_STORAGE_DIR: "/mindsdb/var"
-      # FLASK_DEBUG: "1"
-      # FLASK_ENV: "development"
+      FLASK_DEBUG: "1"
+      FLASK_ENV: "development"
       FLASK_APP: "/mindsdb/mindsdb/__main__.py"
     # healthcheck:
     #   test:  ["CMD", "curl", "-f", "http://localhost:47334/api/util/ping"]
