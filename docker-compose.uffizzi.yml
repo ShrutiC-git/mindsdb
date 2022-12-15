@@ -30,7 +30,7 @@ services:
               memory: 500M
 
   mindsdb:
-    image: "${MINDSDB_IMAGE}"
+    image: mindsdb/mindsdb
     # volumes:
     #  - ./mindsdb:/app/
     #  - /app/__pycache__/

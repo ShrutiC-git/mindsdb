@@ -20,7 +20,6 @@ ENV FLASK_DEBUG "1"
 FROM ubuntu
 COPY . /mindsdb
 
-
 EXPOSE 47334/tcp
 EXPOSE 47335/tcp
 EXPOSE 47336/tcp
