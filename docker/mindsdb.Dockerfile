@@ -17,7 +17,7 @@ RUN pip install git+https://github.com/mindsdb/lightwood.git@staging --upgrade -
 ENV PYTHONPATH "/mindsdb"
 ENV FLASK_DEBUG "1"
 
-# COPY . /mindsdb
+COPY . /mindsdb
 
 EXPOSE 47334/tcp
 EXPOSE 47335/tcp
