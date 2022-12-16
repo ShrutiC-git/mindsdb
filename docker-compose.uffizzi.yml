@@ -31,11 +31,11 @@ services:
               memory: 500M
 
   mindsdb:
-    # image: mindsdb/mindsdb
-    image: "${MINDSDB_IMAGE}"
+    image: mindsdb/mindsdb
+    # image: "${MINDSDB_IMAGE}"
     volumes:
       - mindsdb-data:/data
-      - ./mindsdb/__main__.py:/mindsdb/mindsdb/__main__.py
+      # - ./mindsdb/__main__.py:/mindsdb/mindsdb/__main__.py
     #  - ./mindsdb/integrations:/app/integrations
     #  - ./mindsdb/interfaces:/app/interfaces
     #  - ./mindsdb/migrations:/app/migrations
