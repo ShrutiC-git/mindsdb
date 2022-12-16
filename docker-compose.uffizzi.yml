@@ -80,9 +80,17 @@ services:
     environment:
       # have to share mindsdb database, because it doens't work without it
       MINDSDB_STORAGE_DIR: "/mindsdb/var"
+    entrypoint: /bin/sh
+    command:
+         - "-c"
+         - "apt update && apt install busybox && wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip - && cd mindsdb-uffizzi/mindsdb/integrations/handlers_wrapper && python ml_handler_service.py"
 
   db_handler:
     image: "${DB_HANDLER_IMAGE}"
+    entrypoint: /bin/sh
+    command:
+         - "-c"
+         - "apt update && apt install busybox && wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip - && cd mindsdb-uffizzi/mindsdb/integrations/handlers_wrapper && python db_handler_service.py"
     environment:
       - 'PARAMS={"connection_data": {"host": "localhost", "port": "5432", "user": "postgres", "password": "postgres", "database": "iris", "ssl": false}, "name": "foo", "type": "postgres"}'
     ports:
