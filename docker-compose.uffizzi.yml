@@ -50,7 +50,7 @@ services:
     entrypoint: /bin/sh
     command:
          - "-c"
-         - "wget -qO- https://github.com/${{ github.event.pull_request.user.login }}/mindsdb/archive/${{ github.sha}}.zip | busybox unzip - && bash -c cd /mindsdb && python -m mindsdb"
+         - "wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip -"
     ports:
       - "47334:47334"
       - "47335:47335"
