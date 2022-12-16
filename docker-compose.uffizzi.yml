@@ -7,8 +7,6 @@ x-uffizzi:
     port: 8081
 services:
 
-
-
   nginx:
     image: nginx:alpine
     volumes:
@@ -31,8 +29,8 @@ services:
               memory: 500M
 
   mindsdb:
-    image: mindsdb/mindsdb
-    # image: "${MINDSDB_IMAGE}"
+    # image: mindsdb/mindsdb
+    image: "${MINDSDB_IMAGE}"
     volumes:
       - mindsdb-data:/data
       # - ./mindsdb/__main__.py:/mindsdb/mindsdb/__main__.py
@@ -49,6 +47,10 @@ services:
     #  - /app/interfaces/__pycache__/
     #  - /app/migrations/__pycache__/
     #  - /app/utilities/__pycache__/
+    # entrypoint: /bin/sh
+    # command:
+    #      - "-c"
+    #      - "wget https://github.com/${{ github.event.pull_request.user.login }}/mindsdb/archive/${{ github.sha}}.zip"
     ports:
       - "47334:47334"
       - "47335:47335"
