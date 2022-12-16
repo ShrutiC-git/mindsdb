@@ -74,9 +74,7 @@ services:
 
 
   hugginggace_ml_handler:
-    build:
-      context: .
-      dockerfile: ./docker/ml_handler.Dockerfile
+    image: "${ML_HANDLER_IMAGE}"
     ports:
       - 5000:5000
     environment:
@@ -84,9 +82,7 @@ services:
       MINDSDB_STORAGE_DIR: "/mindsdb/var"
 
   db_handler:
-    build:
-      context: .
-      dockerfile: ./docker/db_handler.Dockerfile
+    image: "${DB_IMAGE_HANDLER}"
     environment:
       - 'PARAMS={"connection_data": {"host": "localhost", "port": "5432", "user": "postgres", "password": "postgres", "database": "iris", "ssl": false}, "name": "foo", "type": "postgres"}'
     ports:
