@@ -31,8 +31,8 @@ services:
   mindsdb:
     # image: mindsdb/mindsdb
     image: "${MINDSDB_IMAGE}"
-    volumes:
-      - mindsdb-data:/data
+    # volumes:
+    #   - mindsdb-data:/data
       # - ./mindsdb/__main__.py:/mindsdb/mindsdb/__main__.py
     #  - ./mindsdb/integrations:/app/integrations
     #  - ./mindsdb/interfaces:/app/interfaces
@@ -75,5 +75,5 @@ services:
 
 volumes:
   postgres_data:
-  mindsdb-data:
+  # mindsdb-data:
 
