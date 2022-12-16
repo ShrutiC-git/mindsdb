@@ -73,6 +73,26 @@ services:
                 memory: 4000M
 
 
+  hugginggace_ml_handler:
+    build:
+      context: .
+      dockerfile: ./docker/ml_handler.Dockerfile
+    ports:
+      - 5000:5000
+    environment:
+      # have to share mindsdb database, because it doens't work without it
+      MINDSDB_STORAGE_DIR: "/mindsdb/var"
+
+  db_handler:
+    build:
+      context: .
+      dockerfile: ./docker/db_handler.Dockerfile
+    environment:
+      - 'PARAMS={"connection_data": {"host": "localhost", "port": "5432", "user": "postgres", "password": "postgres", "database": "iris", "ssl": false}, "name": "foo", "type": "postgres"}'
+    ports:
+      - 5000:5000
+
+
 volumes:
   postgres_data:
   # mindsdb-data:
