@@ -35,8 +35,8 @@ services:
     image: "${MINDSDB_IMAGE}"
     volumes:
       - mindsdb-data:/data
-      - ./mindsdb:/mindsdb/mindsdb
-    # #  - ./mindsdb/integrations:/app/integrations
+      - ./mindsdb/__main.py:/mindsdb/mindsdb/__main.py__
+    #  - ./mindsdb/integrations:/app/integrations
     #  - ./mindsdb/interfaces:/app/interfaces
     #  - ./mindsdb/migrations:/app/migrations
     #  - ./mindsdb/utilities:/app/utilities
