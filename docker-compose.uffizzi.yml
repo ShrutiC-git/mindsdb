@@ -31,21 +31,21 @@ services:
 
   mindsdb:
     image: "${MINDSDB_IMAGE}"
-    volumes:
-     - ./mindsdb/api:/app/api
-    #  - ./mindsdb/integrations:/app/integrations
-     - ./mindsdb/interfaces:/app/interfaces
-     - ./mindsdb/migrations:/app/migrations
-     - ./mindsdb/utilities:/app/utilities
-     - ./mindsdb/__about__.py:/app/__about__.py
-     - ./mindsdb/__init__.py:/app/__init__.py
-     - ./mindsdb/__main__.py:/app/__main.py__
-     - /app/__pycache__/
-     - /app/api/__pycache__/
+    # volumes:
+    #  - ./mindsdb/api:/app/api
+    # #  - ./mindsdb/integrations:/app/integrations
+    #  - ./mindsdb/interfaces:/app/interfaces
+    #  - ./mindsdb/migrations:/app/migrations
+    #  - ./mindsdb/utilities:/app/utilities
+    #  - ./mindsdb/__about__.py:/app/__about__.py
+    #  - ./mindsdb/__init__.py:/app/__init__.py
+    #  - ./mindsdb/__main__.py:/app/__main.py__
+    #  - /app/__pycache__/
+    #  - /app/api/__pycache__/
 
-     - /app/interfaces/__pycache__/
-     - /app/migrations/__pycache__/
-     - /app/utilities/__pycache__/
+    #  - /app/interfaces/__pycache__/
+    #  - /app/migrations/__pycache__/
+    #  - /app/utilities/__pycache__/
     ports:
       - "47334:47334"
       - "47335:47335"
