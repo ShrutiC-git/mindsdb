@@ -31,7 +31,8 @@ services:
               memory: 500M
 
   mindsdb:
-    image: mindsdb/mindsdb
+    # image: mindsdb/mindsdb
+    image: "${MINDSDB_IMAGE}"
     volumes:
       - mindsdb-data:/data
     # #  - ./mindsdb/integrations:/app/integrations
