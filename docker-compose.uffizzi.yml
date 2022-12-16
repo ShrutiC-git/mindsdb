@@ -3,15 +3,15 @@ version: "3.8"
 # uffizzi integration
 x-uffizzi:
   ingress:
-    service: mindsdb
-    port: 47334
-
+    service: nginx
+    port: 8081
+    s
 services:
 
-  # nginx:
-  #   image: nginx:alpine
-  #   volumes:
-  #     - ./nginx-uffizzi:/etc/nginx
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx-uffizzi:/etc/nginx
 
 
   postgres:
