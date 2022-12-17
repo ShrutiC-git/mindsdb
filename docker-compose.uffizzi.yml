@@ -75,8 +75,6 @@ services:
 
   hugginggace_ml_handler:
     image: "${ML_HANDLER_IMAGE}"
-    ports:
-      - 5001:5000
     environment:
       # have to share mindsdb database, because it doens't work without it
       MINDSDB_STORAGE_DIR: "/mindsdb/var"
@@ -85,17 +83,10 @@ services:
          - "-c"
          - "apt update && apt install busybox && wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip - && mv mindsdb-uffizzi mindsdb"
 
-  # db_handler:
-  #   image: "${DB_HANDLER_IMAGE}"
-  #   entrypoint: /bin/sh
-  #   command:
-  #        - "-c"
-  #        - "apt update && apt install busybox && wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip - && mv mindsdb-uffizzi mindsdb && cd mindsdb && chmod +x mindsdb//integrations/handlers_wrapper/db_handler_service.py && mindsdb/integrations/handlers_wrapper/db_handler_service.py"
-  #   environment:
-  #     - 'PARAMS: {"connection_data": {"host": "localhost", "port": "5432", "user": "postgres", "password": "postgres", "database": "iris", "ssl": false}, "name": "foo", "type": "postgres"}'
-  #     - MINDSDB_STORAGE_DIR="/mindsdb/var"
-  #   ports:
-  #     - 5000:5000
+  db_handler:
+    image: "${DB_HANDLER_IMAGE}"
+    environment:
+      - 'PARAMS: {"connection_data": {"host": "localhost", "port": "5432", "user": "postgres", "password": "postgres", "database": "iris", "ssl": false}, "name": "foo", "type": "postgres"}'
 
 
 volumes:
