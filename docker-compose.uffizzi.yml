@@ -83,14 +83,14 @@ services:
     entrypoint: /bin/sh
     command:
          - "-c"
-         - "apt update && apt install busybox && wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip - && mv mindsdb-uffizzi mindsdb && cd mindsdb && mindsdb/integrations/handlers_wrapper/ml_handler_service.py"
+         - "apt update && apt install busybox && wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip - && mv mindsdb-uffizzi mindsdb && cd mindsdb && chmod +x mindsdb/*.py && mindsdb/integrations/handlers_wrapper/ml_handler_service.py"
 
   db_handler:
     image: "${DB_HANDLER_IMAGE}"
     entrypoint: /bin/sh
     command:
          - "-c"
-         - "apt update && apt install busybox && wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip - && mv mindsdb-uffizzi mindsdb && cd mindsdb && mindsdb/integrations/handlers_wrapper/db_handler_service.py"
+         - "apt update && apt install busybox && wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip - && mv mindsdb-uffizzi mindsdb && cd mindsdb && chmod +x mindsdb/*.py && mindsdb/integrations/handlers_wrapper/db_handler_service.py"
     environment:
       - 'PARAMS={"connection_data": {"host": "localhost", "port": "5432", "user": "postgres", "password": "postgres", "database": "iris", "ssl": false}, "name": "foo", "type": "postgres"}'
     ports:
