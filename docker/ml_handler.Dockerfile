@@ -3,6 +3,7 @@ FROM python:3.7
 
 RUN apt-get update && apt-get upgrade -y
 RUN pip3 install --upgrade pip
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 
 WORKDIR /
 
