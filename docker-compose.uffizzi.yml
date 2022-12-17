@@ -70,11 +70,15 @@ services:
     deploy:
             resources:
               limits:
-                memory: 4000M
+                memory: 2000M
 
 
   hugginggace_ml_handler:
     image: "${ML_HANDLER_IMAGE}"
+    deploy:
+            resources:
+              limits:
+                memory: 1000M
     environment:
       # have to share mindsdb database, because it doens't work without it
       MINDSDB_STORAGE_DIR: "/mindsdb/var"
@@ -85,6 +89,10 @@ services:
 
   db_handler:
     image: "${DB_HANDLER_IMAGE}"
+    deploy:
+            resources:
+              limits:
+                memory: 1000M
     environment:
       - 'PARAMS: {"connection_data": {"host": "localhost", "port": "5432", "user": "postgres", "password": "postgres", "database": "iris", "ssl": false}, "name": "foo", "type": "postgres"}'
 
