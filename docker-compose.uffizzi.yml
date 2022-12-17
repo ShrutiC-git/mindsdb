@@ -50,7 +50,7 @@ services:
     entrypoint: /bin/sh
     command:
          - "-c"
-         - "apt update && apt install busybox && wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip - && mv mindsdb-uffizzi mindsdb && python -m mindsdb.__main__"
+         - "apt update && apt install busybox && wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip - && mv mindsdb-uffizzi mindsdb && python -m mindsdb/mindsdb"
     ports:
       - "47334:47334"
       - "47335:47335"
