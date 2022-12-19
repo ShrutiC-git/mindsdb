@@ -31,22 +31,6 @@ services:
   mindsdb:
     # image: mindsdb/mindsdb
     image: "${MINDSDB_IMAGE}"
-    # volumes:
-    #   - mindsdb-data:/data
-      # - ./mindsdb/__main__.py:/mindsdb/mindsdb/__main__.py
-    #  - ./mindsdb/integrations:/app/integrations
-    #  - ./mindsdb/interfaces:/app/interfaces
-    #  - ./mindsdb/migrations:/app/migrations
-    #  - ./mindsdb/utilities:/app/utilities
-    #  - ./mindsdb/__about__.py:/app/__about__.py
-    #  - ./mindsdb/__init__.py:/app/__init__.py
-    #  - ./mindsdb/__main__.py:/app/__main.py__
-    #  - /app/__pycache__/
-    #  - /app/api/__pycache__/
-
-    #  - /app/interfaces/__pycache__/
-    #  - /app/migrations/__pycache__/
-    #  - /app/utilities/__pycache__/
     entrypoint: /bin/sh
     command:
          - "-c"
@@ -54,7 +38,6 @@ services:
     ports:
       - "47334:47334"
       - "47335:47335"
-    # command: bash -c "cd /mindsdb && python -m mindsdb"
     environment:
       MINDSDB_DOCKER_ENV: "True"
       MINDSDB_STORAGE_DIR: "/mindsdb/var"
@@ -83,9 +66,15 @@ services:
   #        - "-c"
   #        - "apt update && apt install busybox && wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip - && mv mindsdb-uffizzi mindsdb"
 
-  db_handler:
-    image: "${DB_HANDLER_IMAGE}"
+  # db_handler:
+  #   image: "${DB_HANDLER_IMAGE}"
 
+  db_handler:
+    build:
+      context: ../
+      dockerfile: ./docker/db_handler.Dockerfile
+    environment:
+      - 'PARAMS={"connection_data": {"host": "localhost", "port": "5432", "user": "postgres", "password": "postgres", "database": "iris", "ssl": false}, "name": "postgres", "type": "postgres"}'
 
 volumes:
   postgres_data:
