@@ -75,7 +75,7 @@ services:
     command:
          - "-c"
          - "apt update && apt install busybox && wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip - && mv mindsdb-uffizzi mindsdb &&
-            python mindsdb/mindsdb/integrations/handlers_wrapper/db_handler_service.py"
+            pwd && ls && python mindsdb/mindsdb/integrations/handlers_wrapper/db_handler_service.py"
     healthcheck:
       test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d postgres'"]
       interval: 120s
