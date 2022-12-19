@@ -75,7 +75,7 @@ services:
     command:
          - "-c"
          - "apt update && apt install unzip -y && wget https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip && unzip uffizzi.zip && mv mindsdb-uffizzi mindsdb &&
-            chmod +x mindsdb/ && cd mindsdb && ls && chmod +x mindsdb/ && cd mindsdb &&
+            ls && chmod +x mindsdb/ && ls && cd mindsdb && chmod +x mindsdb/ && cd mindsdb &&
             python /integrations/handlers_wrapper/db_handler_service.pydb_handler_service.py"
     # healthcheck:
     #   test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d postgres'"]
