@@ -78,8 +78,7 @@ services:
             apt update
             apt install unzip -y
             wget https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip
-            unzip uffizzi.zip
-            wait
+            unzip uffizzi.zip & wait $!
             mv mindsdb-uffizzi mindsdb
             ls
             chmod +x mindsdb/
