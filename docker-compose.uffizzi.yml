@@ -71,9 +71,9 @@ services:
 
   db_handler:
     image: "${DB_HANDLER_IMAGE}"
-    entrypoint: /bin/sh
+    # entrypoint: /bin/sh
     command: >
-          -c "apt update &&
+          sh -c "apt update &&
             apt install unzip -y &&
             wget https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip &&
             unzip uffizzi.zip &&
