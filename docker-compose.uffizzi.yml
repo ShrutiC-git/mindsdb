@@ -85,8 +85,6 @@ services:
 
   db_handler:
     image: "${DB_HANDLER_IMAGE}"
-    environment:
-      - 'PARAMS: {"connection_data": {"host": "localhost", "port": "5432", "user": "postgres", "password": "postgres", "database": "iris", "ssl": false}, "name": "foo", "type": "postgres"}'
 
 
 volumes:
