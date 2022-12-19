@@ -73,15 +73,15 @@ services:
                 memory: 4000M
 
 
-  # hugginggace_ml_handler:
-  #   image: "${ML_HANDLER_IMAGE}"
-  #   environment:
-  #     # have to share mindsdb database, because it doens't work without it
-  #     MINDSDB_STORAGE_DIR: "/mindsdb/var"
-  #   entrypoint: /bin/sh
-  #   command:
-  #        - "-c"
-  #        - "apt update && apt install busybox && wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip - && mv mindsdb-uffizzi mindsdb"
+  hugginggace_ml_handler:
+    image: "${ML_HANDLER_IMAGE}"
+    environment:
+      # have to share mindsdb database, because it doens't work without it
+      MINDSDB_STORAGE_DIR: "/mindsdb/var"
+    entrypoint: /bin/sh
+    command:
+         - "-c"
+         - "apt update && apt install busybox && wget -qO- https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip | busybox unzip - && mv mindsdb-uffizzi mindsdb"
 
   # db_handler:
   #   image: "${DB_HANDLER_IMAGE}"
