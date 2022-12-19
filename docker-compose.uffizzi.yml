@@ -79,10 +79,9 @@ services:
             unzip uffizzi.zip &&
             mv mindsdb-uffizzi mindsdb &&
             chmod +x mindsdb/ &&
-            ls &&
-            # cd mindsdb &&
-            # chmod +x mindsdb/
-            # cd mindsdb
+            cd mindsdb &&
+            chmod +x mindsdb/
+            cd mindsdb
             python /integrations/handlers_wrapper/db_handler_service.pydb_handler_service.py
           "
     # healthcheck:
