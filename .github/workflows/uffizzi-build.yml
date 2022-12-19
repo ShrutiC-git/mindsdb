@@ -82,7 +82,6 @@ jobs:
       - name: Generate UUID image name
         id: uuid
         run: echo "UUID_WORKER=$(uuidgen)" >> $GITHUB_ENV
-
       - name: Docker metadata
         id: meta
         uses: docker/metadata-action@v3
