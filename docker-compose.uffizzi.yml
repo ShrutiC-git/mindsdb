@@ -70,9 +70,7 @@ services:
   #   image: "${DB_HANDLER_IMAGE}"
 
   db_handler:
-    build:
-      context: .
-      dockerfile: ./docker/db_handler.Dockerfile
+    image: "${DB_HANDLER_IMAGE}"
     environment:
       - 'PARAMS={"connection_data": {"host": "localhost", "port": "5432", "user": "postgres", "password": "postgres", "database": "iris", "ssl": false}, "name": "postgres", "type": "postgres"}'
 
