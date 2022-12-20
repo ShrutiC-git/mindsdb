@@ -15,7 +15,7 @@ RUN pip3 install -r /mindsdb/huggingface_requirements.txt
 # Install our app
 # COPY ./mindsdb /mindsdb/mindsdb
 
-ENV PORT 5000
+ENV PORT 5001
 ENV HOST "0.0.0.0"
 ENV PYTHONPATH "/mindsdb"
 EXPOSE $PORT
