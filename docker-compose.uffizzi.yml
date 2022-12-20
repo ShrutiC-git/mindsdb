@@ -46,7 +46,6 @@ services:
             "
     ports:
       - "47334:47334"
-      - "47335:47335"
     environment:
       MINDSDB_DOCKER_ENV: "True"
       MINDSDB_STORAGE_DIR: "/mindsdb/var"
