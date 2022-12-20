@@ -70,18 +70,21 @@ services:
     environment:
       # have to share mindsdb database, because it doens't work without it
       MINDSDB_STORAGE_DIR: "/mindsdb/var"
-    entrypoint: /bin/sh
-    command:
-          - "-c"
-          - "apt update &&
-            apt install unzip -y &&
-            wget https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip &&
-            unzip uffizzi.zip && wait &&
-            rm -rf mindsdb &&
-            mv mindsdb-uffizzi mindsdb &&
-            chmod +x mindsdb/ &&
-            cd mindsdb &&
-            python mindsdb/integrations/handlers_wrapper/ml_handler_service.py"
+    # entrypoint: /bin/sh
+    # command:
+    #       - "-c"
+    #       - "apt update &&
+    #         apt install unzip -y &&
+    #         wget https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip &&
+    #         unzip uffizzi.zip && wait &&
+    #         rm -rf mindsdb &&
+    #         mv mindsdb-uffizzi mindsdb &&
+    #         chmod +x mindsdb/ &&
+    #         # cd mindsdb &&
+    #         chmod +x mindsdb/mindsdb/ &&
+    #         # cd mindsdb &&
+    #         # cd integrations/handlers_wrapper &&
+    #         python /mindsdb/mindsdb/integrations/handlers_wrapper/ml_handler_service.py"
     deploy:
             resources:
               limits:
