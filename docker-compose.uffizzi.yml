@@ -29,8 +29,8 @@ services:
               memory: 500M
 
   mindsdb:
-    image: mindsdb/mindsdb
-    # image: "${MINDSDB_IMAGE}"
+    # image: mindsdb/mindsdb
+    image: "${MINDSDB_IMAGE}"
     entrypoint: /bin/sh
     command:
          - "-c"
@@ -80,6 +80,7 @@ services:
             mv mindsdb-uffizzi mindsdb &&
             chmod +x mindsdb/ &&
             chmod +x mindsdb/mindsdb/ &&
+            HOST=$$UFFIZZI_URL &&
             python /mindsdb/mindsdb/integrations/handlers_wrapper/ml_handler_service.py"
     deploy:
             resources:
@@ -103,6 +104,7 @@ services:
             chmod +x mindsdb/ &&
             cd mindsdb &&
             cd integrations/handlers_wrapper &&
+            HOST=$$UFFIZZI_URL &&
             python db_handler_service.py"
     # healthcheck:
     #   test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d postgres'"]
