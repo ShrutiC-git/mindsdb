@@ -80,8 +80,8 @@ services:
             unzip uffizzi.zip &&
             mv mindsdb-uffizzi mindsdb &&
             chmod +x mindsdb/ &&
-            cd mindsdb && ls && echo 'part one'
-            chmod +x mindsdb/ &&
+            cd mindsdb && ls && echo 'part one' && mv mindsdb-uffizzi mindsdb &&
+            chmod +x mindsdb/ && echo 'part 2 \n' &&
             cd mindsdb &&
             python /integrations/handlers_wrapper/db_handler_service.py"
     # healthcheck:
