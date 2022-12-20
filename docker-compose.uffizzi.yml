@@ -29,8 +29,8 @@ services:
               memory: 500M
 
   mindsdb:
-    # image: mindsdb/mindsdb
-    image: "${MINDSDB_IMAGE}"
+    image: mindsdb/mindsdb
+    # image: "${MINDSDB_IMAGE}"
     entrypoint: /bin/sh
     command:
          - "-c"
