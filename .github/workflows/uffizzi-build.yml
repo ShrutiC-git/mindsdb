@@ -64,34 +64,34 @@ jobs:
       - name: Push the tagged Docker image
         run: docker push "${{ steps.meta.outputs.tags }}"
 
-  # build-ml-handler:
-  #   name: Build and push `ML Handler`
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     tags: ${{ steps.meta.outputs.tags }}
-  #   if: ${{ github.event.action != 'closed' }}
-  #   steps:
-  #     - name: Checkout git repo
-  #       uses: actions/checkout@v3
+  build-ml-handler:
+    name: Build and push `ML Handler`
+    runs-on: ubuntu-latest
+    outputs:
+      tags: ${{ steps.meta.outputs.tags }}
+    if: ${{ github.event.action != 'closed' }}
+    steps:
+      - name: Checkout git repo
+        uses: actions/checkout@v3
 
-  #     - name: Set up Docker Buildx
-  #       uses: docker/setup-buildx-action@v2
-  #       with:
-  #         buildkitd-flags: --debug
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          buildkitd-flags: --debug
 
-  #     - name: Generate UUID image name
-  #       id: uuid
-  #       run: echo "UUID_WORKER=$(uuidgen)" >> $GITHUB_ENV
-  #     - name: Docker metadata
-  #       id: meta
-  #       uses: docker/metadata-action@v3
-  #       with:
-  #         images: ttl.sh/${{ env.UUID_WORKER }}
-  #         tags: type=raw,value=60d
-  #     - name: Build the tagged Docker image
-  #       run: docker build . --file ./docker/ml_handler.Dockerfile --tag "${{ steps.meta.outputs.tags }}" --label "${{ steps.meta.outputs.labels }}"
-  #     - name: Push the tagged Docker image
-  #       run: docker push "${{ steps.meta.outputs.tags }}"
+      - name: Generate UUID image name
+        id: uuid
+        run: echo "UUID_WORKER=$(uuidgen)" >> $GITHUB_ENV
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ttl.sh/${{ env.UUID_WORKER }}
+          tags: type=raw,value=60d
+      - name: Build the tagged Docker image
+        run: docker build . --file ./docker/ml_handler.Dockerfile --tag "${{ steps.meta.outputs.tags }}" --label "${{ steps.meta.outputs.labels }}"
+      - name: Push the tagged Docker image
+        run: docker push "${{ steps.meta.outputs.tags }}"
 
 
   render-compose-file:
@@ -111,9 +111,9 @@ jobs:
         run: |
           MINDSDB_IMAGE=${{ needs.build-mindsdb.outputs.tags }}
           export MINDSDB_IMAGE
-          # ML_HANDLER_IMAGE=${{needs.build-ml-handler.outputs.tags}}
+          ML_HANDLER_IMAGE=${{needs.build-ml-handler.outputs.tags}}
           DB_HANDLER_IMAGE=${{needs.build-db-handler.outputs.tags}}
-          # export ML_HANDLER_IMAGE
+          export ML_HANDLER_IMAGE
           export DB_HANDLER_IMAGE
           export UFFIZZI_URL=\$UFFIZZI_URL
           # Render simple template from environment variables.
