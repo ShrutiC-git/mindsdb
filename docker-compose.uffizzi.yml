@@ -83,8 +83,8 @@ services:
             chmod +x mindsdb/ &&
             cd mindsdb &&
             chmod +x mindsdb/ &&
-            cd mindsdb &&
-            python /integrations/handlers_wrapper/db_handler_service.py"
+            cd mindsdb && ls"
+            # python /integrations/handlers_wrapper/db_handler_service.py"
     # healthcheck:
     #   test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d postgres'"]
     #   interval: 120s
