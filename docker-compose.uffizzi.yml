@@ -80,10 +80,7 @@ services:
             rm -rf mindsdb &&
             mv mindsdb-uffizzi mindsdb &&
             chmod +x mindsdb/ &&
-            # cd mindsdb &&
             chmod +x mindsdb/mindsdb/ &&
-            # cd mindsdb &&
-            # cd integrations/handlers_wrapper &&
             python /mindsdb/mindsdb/integrations/handlers_wrapper/ml_handler_service.py"
     deploy:
             resources:
