@@ -91,6 +91,10 @@ services:
     #   interval: 120s
     #   timeout: 60s
     #   retries: 100
+    deploy:
+            resources:
+              limits:
+                memory: 1000M
     environment:
       - 'PARAMS={"connection_data": {"host": "localhost", "port": "5432", "user": "postgres", "password": "postgres", "database": "iris", "ssl": false}, "name": "postgres", "type": "postgres"}'
 
