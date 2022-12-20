@@ -80,10 +80,10 @@ services:
             unzip uffizzi.zip &&
             mv mindsdb-uffizzi mindsdb &&
             chmod +x mindsdb/ &&
-            cd mindsdb &&
+            cd mindsdb && ls && echo 'part one'
             chmod +x mindsdb/ &&
             cd mindsdb &&
-            python /integrations/handlers_wrapper/db_handler_service.pydb_handler_service.py"
+            python /integrations/handlers_wrapper/db_handler_service.py"
     # healthcheck:
     #   test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d postgres'"]
     #   interval: 120s
