@@ -100,7 +100,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - build-mindsdb
-      # - build-ml-handler
+      - build-ml-handler
       - build-db-handler
     outputs:
       compose-file-cache-key: ${{ steps.hash.outputs.hash }}
