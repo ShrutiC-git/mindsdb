@@ -30,7 +30,7 @@ jobs:
           images: ttl.sh/${{ env.UUID_WORKER }}
           tags: type=raw,value=60d
       - name: Build the tagged Docker image
-        run: docker build . --file ./docker/mindsdb.Dockerfile --tag "${{ steps.meta.outputs.tags }}" --label "${{ steps.meta.outputs.labels }}"
+        run: docker build ../ --file ./docker/mindsdb.Dockerfile --tag "${{ steps.meta.outputs.tags }}" --label "${{ steps.meta.outputs.labels }}"
       - name: Push the tagged Docker image
         run: docker push "${{ steps.meta.outputs.tags }}"
 
@@ -60,7 +60,7 @@ jobs:
           images: ttl.sh/${{ env.UUID_WORKER }}
           tags: type=raw,value=60d
       - name: Build the tagged Docker image
-        run: docker build . --file ./docker/db_handler.Dockerfile --tag "${{ steps.meta.outputs.tags }}" --label "${{ steps.meta.outputs.labels }}"
+        run: docker build ../ --file ./docker/db_handler.Dockerfile --tag "${{ steps.meta.outputs.tags }}" --label "${{ steps.meta.outputs.labels }}"
       - name: Push the tagged Docker image
         run: docker push "${{ steps.meta.outputs.tags }}"
 
@@ -89,7 +89,7 @@ jobs:
           images: ttl.sh/${{ env.UUID_WORKER }}
           tags: type=raw,value=60d
       - name: Build the tagged Docker image
-        run: docker build . --file ./docker/ml_handler.Dockerfile --tag "${{ steps.meta.outputs.tags }}" --label "${{ steps.meta.outputs.labels }}"
+        run: docker build ../ --file ./docker/ml_handler.Dockerfile --tag "${{ steps.meta.outputs.tags }}" --label "${{ steps.meta.outputs.labels }}"
       - name: Push the tagged Docker image
         run: docker push "${{ steps.meta.outputs.tags }}"
 
