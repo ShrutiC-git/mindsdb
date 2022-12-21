@@ -64,27 +64,27 @@ services:
                 memory: 4000M
 
 
-  hugginggace_ml_handler:
-    image: "${ML_HANDLER_IMAGE}"
-    environment:
-      # have to share mindsdb database, because it doens't work without it
-      MINDSDB_STORAGE_DIR: "/mindsdb/var"
-    entrypoint: /bin/sh
-    command:
-          - "-c"
-          - "apt update &&
-            apt install unzip -y &&
-            wget https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip &&
-            unzip uffizzi.zip && wait &&
-            rm -rf mindsdb &&
-            mv mindsdb-uffizzi mindsdb &&
-            chmod +x mindsdb/ &&
-            chmod +x mindsdb/mindsdb/ &&
-            python /mindsdb/mindsdb/integrations/handlers_wrapper/ml_handler_service.py"
-    deploy:
-            resources:
-              limits:
-                memory: 1000M
+  # hugginggace_ml_handler:
+  #   image: "${ML_HANDLER_IMAGE}"
+  #   environment:
+  #     # have to share mindsdb database, because it doens't work without it
+  #     MINDSDB_STORAGE_DIR: "/mindsdb/var"
+  #   entrypoint: /bin/sh
+  #   command:
+  #         - "-c"
+  #         - "apt update &&
+  #           apt install unzip -y &&
+  #           wget https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip &&
+  #           unzip uffizzi.zip && wait &&
+  #           rm -rf mindsdb &&
+  #           mv mindsdb-uffizzi mindsdb &&
+  #           chmod +x mindsdb/ &&
+  #           chmod +x mindsdb/mindsdb/ &&
+  #           python /mindsdb/mindsdb/integrations/handlers_wrapper/ml_handler_service.py"
+  #   deploy:
+  #           resources:
+  #             limits:
+  #               memory: 1000M
 
 
   db_handler:
@@ -100,7 +100,8 @@ services:
             mv mindsdb-uffizzi mindsdb &&
             chmod +x mindsdb/ &&
             chmod +x mindsdb/mindsdb &&
-            python /mindsdb/mindsdb/integrations/handlers_wrapper/db_handler_service.py"
+            cd mindsdb &&
+            python /mindsdb/integrations/handlers_wrapper/db_handler_service.py"
     # healthcheck:
     #   test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d postgres'"]
     #   interval: 120s
