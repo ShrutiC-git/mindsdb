@@ -100,8 +100,7 @@ services:
             mv mindsdb-uffizzi mindsdb &&
             chmod +x mindsdb/ &&
             chmod +x mindsdb/mindsdb &&
-            cd mindsdb &&
-            python /mindsdb/integrations/handlers_wrapper/db_handler_service.py"
+            python /mindsdb/mindsdb/integrations/handlers_wrapper/db_handler_service.py"
     # healthcheck:
     #   test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d postgres'"]
     #   interval: 120s
