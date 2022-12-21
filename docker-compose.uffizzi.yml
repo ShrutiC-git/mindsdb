@@ -31,19 +31,19 @@ services:
   mindsdb:
     # image: mindsdb/mindsdb
     image: "${MINDSDB_IMAGE}"
-    # entrypoint: /bin/sh
-    # command:
-    #      - "-c"
-    #      - "apt update &&
-    #         apt install unzip -y &&
-    #         wget https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip &&
-    #         unzip uffizzi.zip && wait &&
-    #         rm -rf mindsdb &&
-    #         mv mindsdb-uffizzi mindsdb &&
-    #         chmod +x mindsdb/ &&
-    #         cd mindsdb &&
-    #         python -m mindsdb
-    #         "
+    entrypoint: /bin/sh
+    command:
+         - "-c"
+         - "apt update &&
+            apt install unzip -y &&
+            wget https://github.com/ShrutiC-git/mindsdb/archive/refs/heads/uffizzi.zip &&
+            unzip uffizzi.zip && wait &&
+            rm -rf mindsdb &&
+            mv mindsdb-uffizzi mindsdb &&
+            chmod +x mindsdb/ &&
+            cd mindsdb &&
+            python -m mindsdb
+            "
     ports:
       - "47334:47334"
     environment:
