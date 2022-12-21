@@ -80,7 +80,6 @@ services:
             mv mindsdb-uffizzi mindsdb &&
             chmod +x mindsdb/ &&
             chmod +x mindsdb/mindsdb/ &&
-            HOST=$$UFFIZZI_URL &&
             python /mindsdb/mindsdb/integrations/handlers_wrapper/ml_handler_service.py"
     deploy:
             resources:
@@ -101,7 +100,6 @@ services:
             mv mindsdb-uffizzi mindsdb &&
             chmod +x mindsdb/ &&
             chmod +x mindsdb/mindsdb &&
-            HOST=$$UFFIZZI_URL &&
             python /mindsdb/mindsdb/integrations/handlers_wrapper/db_handler_service.py"
     # healthcheck:
     #   test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d postgres'"]

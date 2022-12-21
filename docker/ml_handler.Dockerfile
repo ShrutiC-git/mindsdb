@@ -16,7 +16,7 @@ RUN pip3 install -r /mindsdb/huggingface_requirements.txt
 # COPY ./mindsdb /mindsdb/mindsdb
 
 ENV PORT 5001
-# ENV HOST "0.0.0.0"
+ENV HOST "localhost"
 ENV PYTHONPATH "/mindsdb"
 EXPOSE $PORT
 # ENTRYPOINT ["python3", "/mindsdb/mindsdb/integrations/handlers_wrapper/ml_handler_service.py"]
