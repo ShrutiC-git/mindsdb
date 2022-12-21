@@ -10,7 +10,7 @@ services:
   nginx:
     image: nginx:alpine
     volumes:
-      - ./nginx-uffizzi:/etc/nginx
+      - ./uffizzi/nginx-uffizzi:/etc/nginx
 
 
   postgres:
