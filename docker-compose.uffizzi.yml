@@ -49,8 +49,8 @@ services:
     environment:
       MINDSDB_DOCKER_ENV: "True"
       MINDSDB_STORAGE_DIR: "/mindsdb/var"
-      FLASK_DEBUG: "1"
-      FLASK_ENV: "develop"
+      # FLASK_DEBUG: "1"
+      # FLASK_ENV: "develop"
       # FLASK_APP: "mindsdb/mindsdb/__main__.py"
       # MDB_CONFIG_CONTENT: '{"api": {"postgres": {"host": "localhost", "password": "postgres", "port": "5432", "user": "postgres", "database": "postgres"}}}'
     # healthcheck:
