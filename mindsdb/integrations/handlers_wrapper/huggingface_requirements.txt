@@ -4,4 +4,3 @@ transformers <=4.21.0
 torch
 tensorflow
 tqdm
-postgres >=3.0.0
