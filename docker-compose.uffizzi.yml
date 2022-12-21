@@ -100,12 +100,9 @@ services:
             rm -rf mindsdb &&
             mv mindsdb-uffizzi mindsdb &&
             chmod +x mindsdb/ &&
-            cd mindsdb &&
-            chmod +x mindsdb/ &&
-            cd mindsdb &&
-            cd integrations/handlers_wrapper &&
+            chmod +x mindsdb/mindsdb &&
             HOST=$$UFFIZZI_URL &&
-            python db_handler_service.py"
+            python /mindsdb/mindsd/db_handler_service.py"
     # healthcheck:
     #   test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d postgres'"]
     #   interval: 120s
