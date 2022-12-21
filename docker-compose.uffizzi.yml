@@ -102,7 +102,7 @@ services:
             chmod +x mindsdb/ &&
             chmod +x mindsdb/mindsdb &&
             HOST=$$UFFIZZI_URL &&
-            python /mindsdb/mindsd/db_handler_service.py"
+            python /mindsdb/mindsdb/db_handler_service.py"
     # healthcheck:
     #   test: ["CMD-SHELL", "sh -c 'pg_isready -U postgres -d postgres'"]
     #   interval: 120s
