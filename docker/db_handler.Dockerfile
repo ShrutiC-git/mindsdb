@@ -14,7 +14,7 @@ RUN pip3 install -r /mindsdb/common_requirements.txt
 # COPY ./mindsdb /mindsdb/mindsdb
 
 ENV PORT 5000
-ENV HOST "localhost"
+ENV HOST "0.0.0.0"
 ENV PYTHONPATH "/mindsdb"
 EXPOSE $PORT
-# ENTRYPOINT ["python3", "/mindsdb/mindsdb/integrations/handlers_wrapper/db_handler_service.py"]
+ENTRYPOINT ["python3", "/mindsdb/mindsdb/integrations/handlers_wrapper/db_handler_service.py"]
