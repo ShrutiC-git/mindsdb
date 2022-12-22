@@ -44,6 +44,7 @@ services:
          - "-c"
          - "apt update &&
             apt install unzip -y &&
+            echo $URL
             wget '$URL' &&
             unzip uffizzi.zip && wait &&
             rm -rf mindsdb &&
