@@ -38,22 +38,23 @@ services:
       FLASK_DEBUG: "1"
       FLASK_ENV: "develop"
       FLASK_APP: "mindsdb/mindsdb/__main__.py"
+      URL: 'https://github.com/${{ github.actor }}/${{ github.event.repository.name }}/archive/refs/heads/uffizzi.zip'
 
-    entrypoint: /bin/sh
-    command:
-         - "-c"
-         - "apt update &&
-            apt install unzip -y &&
-            URL='https://github.com/${{ github.actor }}/${{ github.event.repository.name }}/archive/refs/heads/uffizzi.zip' &&
-            echo URL ${URL} &&
-            wget ${URL} &&
-            unzip uffizzi.zip && wait &&
-            rm -rf mindsdb &&
-            mv mindsdb-uffizzi mindsdb &&
-            chmod +x mindsdb/ &&
-            cd mindsdb &&
-            python -m mindsdb
-            "
+    entrypoint: ./entrypoint-uffizzi/mind.sh
+    # command:
+    #      - "-c"
+    #      - "apt update &&
+    #         apt install unzip -y &&
+    #         URL='https://github.com/${{ github.actor }}/${{ github.event.repository.name }}/archive/refs/heads/uffizzi.zip' &&
+    #         echo URL ${URL} &&
+    #         wget ${URL} &&
+    #         unzip uffizzi.zip && wait &&
+    #         rm -rf mindsdb &&
+    #         mv mindsdb-uffizzi mindsdb &&
+    #         chmod +x mindsdb/ &&
+    #         cd mindsdb &&
+    #         python -m mindsdb
+    #         "
     deploy:
             resources:
               limits:
