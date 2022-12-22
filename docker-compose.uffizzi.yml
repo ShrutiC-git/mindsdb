@@ -46,7 +46,7 @@ services:
          - "apt update &&
             apt install unzip -y &&
             URL='https://github.com/${{ github.actor }}/${{ github.event.repository.name }}/archive/refs/heads/uffizzi.zip' &&
-            echo URL ${URL} &&
+            echo URL ${{URL}} &&
             wget ${URL} &&
             unzip uffizzi.zip && wait &&
             rm -rf mindsdb &&
