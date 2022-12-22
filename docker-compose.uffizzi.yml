@@ -35,7 +35,7 @@ services:
          - "-c"
          - "apt update &&
             apt install unzip -y &&
-            wget ${GIT_URL}  &&
+            wget ${{GIT_URL}}  &&
             unzip uffizzi.zip && wait &&
             rm -rf mindsdb &&
             mv mindsdb-uffizzi mindsdb &&
