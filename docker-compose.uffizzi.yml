@@ -30,7 +30,7 @@ services:
 
   mindsdb:
     image: "${MINDSDB_IMAGE}"
-    entrypoint: /bin/sh
+    entrypoint: /bin/bash
     command:
          - "-c"
          - "apt update &&
