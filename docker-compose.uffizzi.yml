@@ -35,7 +35,7 @@ services:
          - "-c"
          - "apt update &&
             apt install unzip -y &&
-            wget https://github.com/${github.actor}/${github.event.repository.name}/archive/refs/heads/${github.head_ref}.zip &&
+            wget ${GIT_URL}  &&
             unzip uffizzi.zip && wait &&
             rm -rf mindsdb &&
             mv mindsdb-uffizzi mindsdb &&
@@ -51,6 +51,7 @@ services:
       FLASK_DEBUG: "1"
       FLASK_ENV: "develop"
       FLASK_APP: "mindsdb/mindsdb/__main__.py"
+      GIT_URL: "https://github.com/${{github.actor}}/${{github.event.repository.name}}/archive/refs/heads/${{github.head_ref}}.zip"
     deploy:
             resources:
               limits:
