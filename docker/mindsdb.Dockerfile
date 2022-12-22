@@ -1,30 +1,3 @@
-# FROM python:3.8 as base
-
-
-# RUN apt update && apt-get upgrade -y && apt install -y build-essential
-
-# # db2 requirement
-# RUN apt install -y libxml2 || true
-
-# RUN python3 -m pip install --no-cache-dir --upgrade pip && \
-#     pip install --no-cache-dir boto3
-
-# WORKDIR /
-# COPY requirements.txt /requirements.txt
-# RUN pip install -r requirements.txt --no-cache-dir
-# RUN pip install git+https://github.com/mindsdb/lightwood.git@staging --upgrade --no-cache-dir
-
-# ENV PYTHONPATH "/mindsdb"
-# ENV FLASK_DEBUG "1"
-
-# COPY mindsdb /app
-
-# EXPOSE 47334/tcp
-# EXPOSE 47335/tcp
-# EXPOSE 47336/tcp
-
-
-
 FROM python:3.8
 
 
