@@ -116,6 +116,8 @@ jobs:
           export ML_HANDLER_IMAGE
           export DB_HANDLER_IMAGE
           export UFFIZZI_URL=\$UFFIZZI_URL
+          GIT_URL=https://github.com/${{github.actor}}/${{github.event.repository.name}}/archive/refs/heads/uffizzi.zip
+          export GIT_URL
           # Render simple template from environment variables.
           envsubst < docker-compose.uffizzi.yml > docker-compose.rendered.yml
           cat docker-compose.rendered.yml

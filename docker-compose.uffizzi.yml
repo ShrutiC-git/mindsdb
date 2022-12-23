@@ -38,15 +38,13 @@ services:
       FLASK_DEBUG: "1"
       FLASK_ENV: "develop"
       FLASK_APP: "mindsdb/mindsdb/__main__.py"
-      URL: "https://github.com/${{github.actor}}/${{github.event.repository.name}}/archive/refs/heads/uffizzi.zip"
 
     entrypoint: /bin/sh
     command:
          - "-c"
          - "apt update &&
             apt install unzip -y &&
-            echo URL '${URL}' &&
-            wget ${URL} &&
+            wget $$GIT_URL &&
             unzip uffizzi.zip && wait &&
             rm -rf mindsdb &&
             mv mindsdb-uffizzi mindsdb &&
