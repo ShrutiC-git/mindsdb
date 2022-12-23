@@ -44,7 +44,7 @@ services:
          - "-c"
          - "apt update &&
             apt install unzip -y &&
-            wget https://github.com/$$github.actor/$$github.event.repository.name/archive/refs/heads/uffizzi.zip
+            wget 'https://github.com/$$github.actor/$$github.event.repository.name/archive/refs/heads/uffizzi.zip'
             unzip uffizzi.zip && wait &&
             rm -rf mindsdb &&
             mv mindsdb-uffizzi mindsdb &&
