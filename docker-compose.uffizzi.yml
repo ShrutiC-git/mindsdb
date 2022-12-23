@@ -44,8 +44,7 @@ services:
          - "-c"
          - "apt update &&
             apt install unzip -y &&
-            echo 'https://git.com/${GHA_ACTOR}' &&
-            wget 'https://github.com/$GHA_ACTOR/$GHA_REPO/archive/refs/heads/uffizzi.zip' &&
+            wget 'https://github.com/$GHA_ACTOR/$GHA_REPO/archive/refs/heads/$GHA_BRANCH.zip' &&
             unzip uffizzi.zip && wait &&
             rm -rf mindsdb &&
             mv mindsdb-uffizzi mindsdb &&
