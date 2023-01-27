@@ -28,7 +28,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ttl.sh/${{ env.UUID_WORKER }}
+          images: registry.uffizzi.com/${{ env.UUID_WORKER }}
           tags: type=raw,value=60d
       - name: Build the tagged Docker image
         run: docker build ./ --file ./docker/mindsdb.Dockerfile --tag "${{ steps.meta.outputs.tags }}" --label "${{ steps.meta.outputs.labels }}"
@@ -59,7 +59,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ttl.sh/${{ env.UUID_WORKER }}
+          images: registry.uffizzi.com/${{ env.UUID_WORKER }}
           tags: type=raw,value=60d
       - name: Build the tagged Docker image
         run: docker build ./ --file ./docker/db_handler.uffizzi.Dockerfile --tag "${{ steps.meta.outputs.tags }}" --label "${{ steps.meta.outputs.labels }}"
@@ -89,7 +89,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ttl.sh/${{ env.UUID_WORKER }}
+          images: registry.uffizzi.com/${{ env.UUID_WORKER }}
           tags: type=raw,value=60d
       - name: Build the tagged Docker image
         run: docker build ./ --file ./docker/ml_handler.uffizzi.Dockerfile --tag "${{ steps.meta.outputs.tags }}" --label "${{ steps.meta.outputs.labels }}"
