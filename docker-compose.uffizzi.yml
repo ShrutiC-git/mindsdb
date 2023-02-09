@@ -25,7 +25,7 @@ services:
    deploy:
           resources:
             limits:
-              memory: 500M
+              memory: 250M
 
   mindsdb:
     image: "${MINDSDB_IMAGE}"
@@ -60,7 +60,7 @@ services:
     deploy:
             resources:
               limits:
-                memory: 2000M
+                memory: 1000M
 
   migrations:
     image: "${MINDSDB_IMAGE}"
@@ -83,7 +83,7 @@ services:
     deploy:
             resources:
               limits:
-                memory: 500M
+                memory: 250M
 
 
   executor:
@@ -109,7 +109,7 @@ services:
     deploy:
             resources:
               limits:
-                memory: 1000M  
+                memory: 500M  
 
 
   huggingface_ml_handler:
