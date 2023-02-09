@@ -80,7 +80,7 @@ services:
     deploy:
             resources:
               limits:
-                memory: 250M
+                memory: 1000M
 
   executor:
     image: "${EXECUTOR_IMAGE}"
