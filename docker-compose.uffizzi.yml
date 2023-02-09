@@ -9,11 +9,6 @@ services:
 
   nginx:
     image: nginx:alpine
-    environment:
-      MINDSDB_LIGHTWOOD_HOST: "127.0.0.1"
-      MINDSDB_LIGHTWOOD_PORT: 5001
-      MINDSDB_HUGGINGFACE_HOST: "127.0.0.1"
-      MINDSDB_HUGGINGFACE_PORT: 5003
     volumes:
       - ./nginx-uffizzi:/etc/nginx
 
@@ -43,6 +38,10 @@ services:
       FLASK_DEBUG: "1"
       FLASK_ENV: "develop"
       FLASK_APP: "mindsdb/mindsdb/__main__.py"
+      MINDSDB_EXECUTOR_URL: "http://localhost:5002"
+      BALANCER_URL: "http://localhost:8081"
+      MINDSDB_DB_SERVICE_URL: "http://localhost:5000"
+      SEPARATE_MIGRATIONS: "1"
     entrypoint: /bin/sh
     # Rather than pushing the app as a volume, which is a limitation on the GCP ingress, the command below
     # will download the code directly from GitHub on the container.
@@ -65,6 +64,8 @@ services:
 
   migrations:
     image: "${MINDSDB_IMAGE}"
+    environment:
+      MINDSDB_STORAGE_DIR: "/mindsdb/var"
     entrypoint: /bin/sh
     # Rather than pushing the app as a volume, which is a limitation on the GCP ingress, the command below
     # will download the code directly from GitHub on the container.
