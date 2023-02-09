@@ -1,6 +1,5 @@
 name: Deploy Uffizzi Preview
 
-# Workflow run — runs only when the Build PR/ uffizzi-build.yml completes successfully.
 on:
   workflow_run:
     workflows:
@@ -71,9 +70,9 @@ jobs:
 
   deploy-uffizzi-preview:
     name: Use Remote Workflow to Preview on Uffizzi
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     needs:
       - cache-compose-file
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     uses: UffizziCloud/preview-action/.github/workflows/reusable.yaml@v2
     with:
       # If this workflow was triggered by a PR close event, cache-key will be an empty string
