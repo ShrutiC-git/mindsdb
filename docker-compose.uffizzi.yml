@@ -26,7 +26,7 @@ services:
    deploy:
           resources:
             limits:
-              memory: 250M
+              memory: 500M
 
   mindsdb:
     image: "${MINDSDB_IMAGE}"
@@ -62,28 +62,26 @@ services:
               limits:
                 memory: 1000M
 
-  migrations:
-    image: "${MINDSDB_IMAGE}"
-    environment:
-      MINDSDB_STORAGE_DIR: "/mindsdb/var"
-    entrypoint: /bin/sh
-    # Rather than pushing the app as a volume, which is a limitation on the GCP ingress, the command below
-    # will download the code directly from GitHub on the container.
-    command:
-         - "-c"
-         - "apt update &&
-            apt install unzip -y &&
-            wget 'https://github.com/$GHA_ACTOR/$GHA_REPO/archive/refs/heads/$GHA_BRANCH.zip' &&
-            unzip $GHA_BRANCH.zip && wait &&
-            rm -rf mindsdb &&
-            mv mindsdb-$GHA_BRANCH mindsdb &&
-            chmod +x mindsdb/ &&
-            cd /mindsdb && python ./mindsdb/migrations/migrate.py
-            "
-    deploy:
-            resources:
-              limits:
-                memory: 250M
+  # migrations:
+  #   image: "${MINDSDB_IMAGE}"
+  #   environment:
+  #     MINDSDB_STORAGE_DIR: "/mindsdb/var"
+  #   entrypoint: /bin/sh
+  #   command:
+  #        - "-c"
+  #        - "apt update &&
+  #           apt install unzip -y &&
+  #           wget 'https://github.com/$GHA_ACTOR/$GHA_REPO/archive/refs/heads/$GHA_BRANCH.zip' &&
+  #           unzip $GHA_BRANCH.zip && wait &&
+  #           rm -rf mindsdb &&
+  #           mv mindsdb-$GHA_BRANCH mindsdb &&
+  #           chmod +x mindsdb/ &&
+  #           cd /mindsdb && python ./mindsdb/migrations/migrate.py
+  #           "
+  #   deploy:
+  #           resources:
+  #             limits:
+  #               memory: 250M
 
   executor:
     image: "${EXECUTOR_IMAGE}"
