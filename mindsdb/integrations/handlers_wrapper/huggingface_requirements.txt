@@ -4,3 +4,4 @@ transformers <=4.21.0
 torch
 tensorflow
 tqdm
+walrus==0.8.2
