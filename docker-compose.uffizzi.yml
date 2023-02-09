@@ -61,26 +61,26 @@ services:
               limits:
                 memory: 1000M
 
-  migrations:
-    image: "${MINDSDB_IMAGE}"
-    environment:
-      MINDSDB_STORAGE_DIR: "/mindsdb/var"
-    entrypoint: /bin/sh
-    command:
-         - "-c"
-         - "apt update &&
-            apt install unzip -y &&
-            wget 'https://github.com/$GHA_ACTOR/$GHA_REPO/archive/refs/heads/$GHA_BRANCH.zip' &&
-            unzip $GHA_BRANCH.zip && wait &&
-            rm -rf mindsdb &&
-            mv mindsdb-$GHA_BRANCH mindsdb &&
-            chmod +x mindsdb/ &&
-            cd /mindsdb && python ./mindsdb/migrations/migrate.py
-            "
-    deploy:
-            resources:
-              limits:
-                memory: 1000M
+  # migrations:
+  #   image: "${MINDSDB_IMAGE}"
+  #   environment:
+  #     MINDSDB_STORAGE_DIR: "/mindsdb/var"
+  #   entrypoint: /bin/sh
+  #   command:
+  #        - "-c"
+  #        - "apt update &&
+  #           apt install unzip -y &&
+  #           wget 'https://github.com/$GHA_ACTOR/$GHA_REPO/archive/refs/heads/$GHA_BRANCH.zip' &&
+  #           unzip $GHA_BRANCH.zip && wait &&
+  #           rm -rf mindsdb &&
+  #           mv mindsdb-$GHA_BRANCH mindsdb &&
+  #           chmod +x mindsdb/ &&
+  #           cd /mindsdb && python ./mindsdb/migrations/migrate.py
+  #           "
+  #   deploy:
+  #           resources:
+  #             limits:
+  #               memory: 1000M
 
   executor:
     image: "${EXECUTOR_IMAGE}"
