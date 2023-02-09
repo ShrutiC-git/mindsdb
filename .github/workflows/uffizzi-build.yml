@@ -96,6 +96,34 @@ jobs:
       - name: Push the tagged Docker image
         run: docker push "${{ steps.meta.outputs.tags }}"
 
+  # Build and push executor from source
+  build-executor:
+    name: Build and push `Executor`
+    runs-on: ubuntu-latest
+    outputs:
+      tags: ${{ steps.meta.outputs.tags }}
+    if: ${{ github.event.action != 'closed' }}
+    steps:
+      - name: Checkout git repo
+        uses: actions/checkout@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          buildkitd-flags: --debug
+      - name: Generate UUID image name
+        id: uuid
+        run: echo "UUID_WORKER=$(uuidgen)" >> $GITHUB_ENV
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: registry.uffizzi.com/${{ env.UUID_WORKER }}
+          tags: type=raw,value=60d
+      - name: Build the tagged Docker image
+        run: docker build ./ --file ./docker/executor.Dockerfile --tag "${{ steps.meta.outputs.tags }}" --label "${{ steps.meta.outputs.labels }}"
+      - name: Push the tagged Docker image
+        run: docker push "${{ steps.meta.outputs.tags }}"
+
   render-compose-file:
     name: Render Docker Compose File
     # Pass output of this workflow to another triggered by `workflow_run` event.
@@ -104,6 +132,7 @@ jobs:
       - build-mindsdb
       - build-ml-handler
       - build-db-handler
+      - build-executor
     outputs:
       compose-file-cache-key: ${{ steps.hash.outputs.hash }}
     steps:
@@ -114,7 +143,8 @@ jobs:
           MINDSDB_IMAGE=${{ needs.build-mindsdb.outputs.tags }}
           ML_HANDLER_IMAGE=${{needs.build-ml-handler.outputs.tags}}
           DB_HANDLER_IMAGE=${{needs.build-db-handler.outputs.tags}}
-          export MINDSDB_IMAGE ML_HANDLER_IMAGE DB_HANDLER_IMAGE
+          EXECUTOR_IMAGE=${{ needs.build-executor.outputs.tags }}
+          export MINDSDB_IMAGE ML_HANDLER_IMAGE DB_HANDLER_IMAGE EXECUTOR_IMAGE
           export UFFIZZI_URL=\$UFFIZZI_URL
           GHA_ACTOR=${{github.actor}}
           GHA_REPO=${{github.event.repository.name}}
