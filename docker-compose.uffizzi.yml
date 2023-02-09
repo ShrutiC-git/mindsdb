@@ -5,6 +5,7 @@ x-uffizzi:
   ingress:
     service: nginx
     port: 8081
+
 services:
 
   nginx:
@@ -39,7 +40,6 @@ services:
       FLASK_ENV: "develop"
       FLASK_APP: "mindsdb/mindsdb/__main__.py"
       MINDSDB_EXECUTOR_URL: "http://localhost:5002"
-      BALANCER_URL: "http://localhost:8081"
       MINDSDB_DB_SERVICE_URL: "http://localhost:5000"
       SEPARATE_MIGRATIONS: "1"
     entrypoint: /bin/sh
@@ -85,14 +85,12 @@ services:
               limits:
                 memory: 250M
 
-
   executor:
     image: "${EXECUTOR_IMAGE}"
     environment:
       # have to share mindsdb database, because it doens't work without it
       PORT: 5002
       MINDSDB_STORAGE_DIR: "/mindsdb/var"
-      BALANCER_URL: "http://localhost:8081"
       MINDSDB_DB_SERVICE_URL: "http://localhost:5000"
     entrypoint: /bin/sh
     command:
