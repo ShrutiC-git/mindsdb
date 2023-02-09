@@ -8,7 +8,6 @@ on:
     types:
       - completed
 
-
 jobs:
   cache-compose-file:
     name: Cache Compose File
