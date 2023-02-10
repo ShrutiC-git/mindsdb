@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.2"
 
 # uffizzi integration
 x-uffizzi:
@@ -41,6 +41,7 @@ services:
       FLASK_APP: "mindsdb/mindsdb/__main__.py"
       MINDSDB_EXECUTOR_URL: "http://localhost:5002"
       MINDSDB_DB_SERVICE_URL: "http://localhost:5000"
+      BALANCER_URL: "http://localhost:8081"
     entrypoint: /bin/sh
     # Rather than pushing the app as a volume, which is a limitation on the GCP ingress, the command below
     # will download the code directly from GitHub on the container.
@@ -61,26 +62,26 @@ services:
               limits:
                 memory: 1000M
 
-  # migrations:
-  #   image: "${MINDSDB_IMAGE}"
-  #   environment:
-  #     MINDSDB_STORAGE_DIR: "/mindsdb/var"
-  #   entrypoint: /bin/sh
-  #   command:
-  #        - "-c"
-  #        - "apt update &&
-  #           apt install unzip -y &&
-  #           wget 'https://github.com/$GHA_ACTOR/$GHA_REPO/archive/refs/heads/$GHA_BRANCH.zip' &&
-  #           unzip $GHA_BRANCH.zip && wait &&
-  #           rm -rf mindsdb &&
-  #           mv mindsdb-$GHA_BRANCH mindsdb &&
-  #           chmod +x mindsdb/ &&
-  #           cd /mindsdb && python ./mindsdb/migrations/migrate.py
-  #           "
-  #   deploy:
-  #           resources:
-  #             limits:
-  #               memory: 1000M
+  migrations:
+    image: "${MINDSDB_IMAGE}"
+    environment:
+      MINDSDB_STORAGE_DIR: "/mindsdb/var"
+    entrypoint: /bin/sh
+    command:
+         - "-c"
+         - "apt update &&
+            apt install unzip -y &&
+            wget 'https://github.com/$GHA_ACTOR/$GHA_REPO/archive/refs/heads/$GHA_BRANCH.zip' &&
+            unzip $GHA_BRANCH.zip && wait &&
+            rm -rf mindsdb &&
+            mv mindsdb-$GHA_BRANCH mindsdb &&
+            chmod +x mindsdb/ &&
+            cd /mindsdb && python ./mindsdb/migrations/migrate.py
+            "
+    deploy:
+            resources:
+              limits:
+                memory: 2000M
 
   executor:
     image: "${EXECUTOR_IMAGE}"
@@ -89,6 +90,7 @@ services:
       PORT: 5002
       MINDSDB_STORAGE_DIR: "/mindsdb/var"
       MINDSDB_DB_SERVICE_URL: "http://localhost:5000"
+      BALANCER_URL: "http://localhost:8081"
     entrypoint: /bin/sh
     command:
          - "-c"
@@ -105,7 +107,6 @@ services:
             resources:
               limits:
                 memory: 500M  
-
 
   huggingface_ml_handler:
     image: "${ML_HANDLER_IMAGE}"
