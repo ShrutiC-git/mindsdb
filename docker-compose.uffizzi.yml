@@ -106,7 +106,7 @@ services:
     deploy:
             resources:
               limits:
-                memory: 500M  
+                memory: 2000M  
 
   huggingface_ml_handler:
     image: "${ML_HANDLER_IMAGE}"
