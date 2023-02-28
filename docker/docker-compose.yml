@@ -43,101 +43,16 @@ services:
       interval: 30s
       timeout: 4s
       retries: 100
-
-  lightwood:
-    build:
-      context: ../
-      dockerfile: ./docker/ml_handler.Dockerfile
-    depends_on:
-      - mindsdb
-    volumes:
-      - type: bind
-        source: ../
-        target: /mindsdb
-    environment:
-      # have to share mindsdb database, because it doens't work without it
-      REGISTRY_URL: "http://handler_discovery:5000"
-      PORT: 50051
-      HOST: "lightwood"
-      MINDSDB_SERVICE_TYPE: "lightwood"
-      MINDSDB_STORAGE_DIR: "/mindsdb/var"
-      REGISTRY_URL: "http://handler_discovery:5000"
-      MINDSDB_DB_SERVICE_HOST: "db_service"
-      MINDSDB_DB_SERVICE_PORT: "50050"
-
-  huggingface:
-    build:
-      context: ../
-      dockerfile: ./docker/ml_handler.Dockerfile
-    depends_on:
-      - mindsdb
-    volumes:
-      - type: bind
-        source: ../
-        target: /mindsdb
-    environment:
-      # have to share mindsdb database, because it doens't work without it
-      PORT: 50053
-      HOST: "huggingface"
-      MINDSDB_SERVICE_TYPE: "huggingface"
-      MINDSDB_STORAGE_DIR: "/mindsdb/var"
-      REGISTRY_URL: "http://handler_discovery:5000"
-      MINDSDB_STORAGE_DIR: "/mindsdb/var"
-      MINDSDB_DB_SERVICE_HOST: "db_service"
-      MINDSDB_DB_SERVICE_PORT: "50050"
-
-
-  db_service:
-    build:
-      context: ../
-      dockerfile: ./docker/db_handler.Dockerfile
-    depends_on:
-      - mindsdb
-        # - mysql_db
-    volumes:
-      - type: bind
-        source: ../
-        target: /mindsdb
-    environment:
-      MINDSDB_STORAGE_DIR: "/mindsdb/var"
-      PORT: "50050"
-
-    healthcheck:
-      test:  ["CMD", "curl", "-f", "http://localhost:5000"]
-      interval: 120s
-      timeout: 4s
-      retries: 100
-
-  executor:
-    build:
-      context: ../
-      dockerfile: ./docker/executor.Dockerfile
-    depends_on:
-      - mindsdb
-    environment:
-      # have to share mindsdb database, because it doens't work without it
-      # PORT: 5002
-      PORT: 50052
-      MINDSDB_STORAGE_DIR: "/mindsdb/var"
-        # BALANCER_URL: "http://balancer:80"
-      MINDSDB_DB_SERVICE_HOST: "db_service"
-      MINDSDB_DB_SERVICE_PORT: "50050"
-        # MINDSDB_ML_SERVICE_HOST: "lightwood"
-        # MINDSDB_ML_SERVICE_PORT: "50051"
-      REGISTRY_URL: "http://handler_discovery:5000"
-    volumes:
-      - type: bind
-        source: ../
-        target: /mindsdb
-    healthcheck:
-      test:  ["CMD", "curl", "-f", "http://localhost:5000"]
-      interval: 120s
-      timeout: 4s
-      retries: 100
-
-  handler_discovery:
-    build:
-      context: .
-      dockerfile: ./handler_discovery.Dockerfile
-    environment:
-      PORT: 5000
+        #   mysql_db:
+        #     image: "mindsdb/mysql-handler-test"
+        #     ports:
+        #       - 3307:3306
+        #     command: --secure-file-priv=/
+        #     environment:
+        #       MYSQL_ROOT_PASSWORD: "supersecret"
+        #       MYSQL_DATABASE: "test"
+        #     healthcheck:
+        #       test: ["CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD' ]
+        #       interval: 120s
+        #       timeout: 4s
+        #       retries: 100
